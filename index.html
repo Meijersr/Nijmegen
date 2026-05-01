@@ -927,7 +927,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // Route polyline
-L.polyline(highlights.map(h => [h.lat, h.lng]), {
+L.polyline(highlights.filter(h => h.cat !== 'tips').map(h => [h.lat, h.lng]), {
   color: '#8b5e2a',
   weight: 3,
   opacity: 0.65,
