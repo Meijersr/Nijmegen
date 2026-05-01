@@ -223,15 +223,18 @@
     }
 
     /* ── WELCOME ── */
-    #welcome {
+    #welcome,
+    #drawerContent {
       padding: 22px 18px;
     }
-    #welcome h2 {
+    #welcome h2,
+    #drawerContent h2 {
       font-size: 1.3rem;
       color: #2c1a00;
       margin-bottom: 6px;
     }
-    #welcome .quote {
+    #welcome .quote,
+    #drawerContent .quote {
       font-style: italic;
       color: #7a5a30;
       font-size: 0.85rem;
@@ -240,18 +243,21 @@
       margin: 12px 0;
       line-height: 1.5;
     }
-    #welcome p {
+    #welcome p,
+    #drawerContent p {
       font-size: 0.86rem;
       line-height: 1.6;
       color: #3a2810;
       margin-bottom: 10px;
     }
-    #welcome .stats {
+    #welcome .stats,
+    #drawerContent .stats {
       display: flex;
       gap: 10px;
       margin: 14px 0;
     }
-    #welcome .stat {
+    #welcome .stat,
+    #drawerContent .stat {
       background: #fff8e6;
       border: 1px solid #d4a855;
       border-radius: 6px;
@@ -259,20 +265,24 @@
       text-align: center;
       flex: 1;
     }
-    #welcome .stat-num {
+    #welcome .stat-num,
+    #drawerContent .stat-num {
       font-size: 1.3rem;
       font-weight: bold;
       color: #8b5e2a;
     }
-    #welcome .stat-label {
+    #welcome .stat-label,
+    #drawerContent .stat-label {
       font-size: 0.66rem;
       font-family: sans-serif;
       color: #7a5a30;
       text-transform: uppercase;
       letter-spacing: 0.07em;
     }
-    #welcome .legend-full { margin-top: 14px; }
-    #welcome .legend-full h3 {
+    #welcome .legend-full,
+    #drawerContent .legend-full { margin-top: 14px; }
+    #welcome .legend-full h3,
+    #drawerContent .legend-full h3 {
       font-size: 0.75rem;
       font-family: sans-serif;
       text-transform: uppercase;
@@ -280,7 +290,8 @@
       color: #8b5e2a;
       margin-bottom: 8px;
     }
-    #welcome .lfi {
+    #welcome .lfi,
+    #drawerContent .lfi {
       display: flex;
       align-items: center;
       gap: 8px;
@@ -288,10 +299,23 @@
       font-size: 0.8rem;
       color: #3a2810;
     }
-    #welcome .lfd {
+    #welcome .lfd,
+    #drawerContent .lfd {
       width: 13px; height: 13px;
       border-radius: 50%;
       flex-shrink: 0;
+    }
+    #welcome .hist-section,
+    #drawerContent .hist-section {
+      margin-top: 14px;
+      border-top: 1px solid #d4a855;
+      padding-top: 12px;
+    }
+    #welcome .hist-section h3,
+    #drawerContent .hist-section h3 {
+      font-size: 0.92rem;
+      color: #2c1a00;
+      margin-bottom: 6px;
     }
 
     /* ── POPUPS ── */
@@ -395,10 +419,45 @@
     #infoDrawer.open { max-height: 65vh; }
     #infoDrawer .drawer-inner { padding: 18px 18px 22px; }
 
+    /* ── MOBILE PERSISTENT LEGEND ── */
+    .mobile-legend {
+      display: none;
+    }
     @media (max-width: 700px) {
       .info-toggle { display: flex; }
       .legend { display: none; }
       header h1 { font-size: 1rem; }
+
+      .mobile-legend {
+        display: block;
+        position: absolute;
+        bottom: 24px;
+        left: 8px;
+        z-index: 600;
+        background: rgba(253,246,232,0.92);
+        border: 1px solid #d4a855;
+        border-radius: 6px;
+        padding: 5px 7px;
+        font-family: sans-serif;
+        font-size: 0.62rem;
+        color: #3a2810;
+        pointer-events: none;
+        box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+      }
+      .mobile-legend .ml-item {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-bottom: 3px;
+        white-space: nowrap;
+      }
+      .mobile-legend .ml-item:last-child { margin-bottom: 0; }
+      .mobile-legend .ml-dot {
+        width: 9px; height: 9px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        border: 1px solid rgba(255,255,255,0.6);
+      }
     }
   </style>
 </head>
@@ -421,6 +480,8 @@
 
 <div class="main">
   <div id="map"></div>
+
+  <div id="mobileLegend" class="mobile-legend"></div>
 
   <div id="panel">
     <div id="welcome"></div>
@@ -600,7 +661,7 @@ const highlights = [
     wikiArticle: 'Godenpijler_(Nijmegen)', wikiLang: 'nl',
     imageCaption: 'De Godenpijler — oudste stenen vondst van Nederland (17 na Chr.).',
     text: `<p>De Godenpijler is de oudste stenen vondst van Nederland: hij dateert uit het jaar 17 na Christus. De zuil toont keizer Tiberius die een offer brengt, terwijl de godin Victoria hem een lauwerkrans reikt. Aan de drie andere zijden staan Apollo, Diana en Ceres afgebeeld.</p>
-<p>Het origineel is te zien in Museum het Valkhof. Op het Kelfkensbos staat een hedendaagse replica: de <em>Noviomagus-zuil</em> (2005), een Römse zonnewijzer van zwart graniet. De schaduw van de bronzen schildpad op de top wandelt langzaam over het plein — zijn vier poten staan voor de windrichtingen, zijn schild voor bescherming.</p>`,
+<p>Het origineel is te zien in Museum het Valkhof. Op het Kelfkensbos staat een hedendaagse replica: de <em>Noviomagus-zuil</em> (2005), een Roomse zonnewijzer van zwart graniet. De schaduw van de bronzen schildpad op de top wandelt langzaam over het plein — zijn vier poten staan voor de windrichtingen, zijn schild voor bescherming.</p>`,
     funFact: 'Noviomagus was de Latijnse naam voor Nijmegen. Het betekent zoiets als "nieuwe markt" of "nieuw veld".'
   },
   {
@@ -633,7 +694,7 @@ const highlights = [
     wikiArticle: 'Valkhof_(Nijmegen)', wikiLang: 'nl',
     imageCaption: 'Het Valkhofpark — locatie van het Karolingische paleis van Karel de Grote.',
     text: `<p>Het Valkhofpark is misschien wel de plek waar je Nijmegens 2000-jarige geschiedenis het beste kunt voelen. Hier resideerden de machthebbers door de eeuwen heen: Romein, Merovinger, Karolinger, Noorman, middeleeuwse keizer.</p>
-<p><strong>Römse tijd:</strong> Het park was een economisch centrum voor de Bataven. Op de nabijgelegen Hunnerberg stond het oudste stenen bouwwerk van Nederland (15 v. Chr.).</p>
+<p><strong>Roomse tijd:</strong> Het park was een economisch centrum voor de Bataven. Op de nabijgelegen Hunnerberg stond het oudste stenen bouwwerk van Nederland (15 v. Chr.).</p>
 <p><strong>Karel de Grote:</strong> In 777 bouwde hij hier een palts (paleis met kapel en hofhouding). Nijmegen was zijn lievelingsverblijfplaats naast Aken.</p>
 <p><strong>Noormannen:</strong> In de winter van 880/881 namen de Noormannen het Valkhof in bezit — en staken bij vertrek de hele palts in brand.</p>
 <p><strong>Franse Tijd:</strong> In 1796 werd de burcht gesloopt. De revolutionairen wilden af van alles wat aan het oude regime herinnerde. De stenen werden verkocht aan een Amsterdamse stratenmaker.</p>`,
@@ -647,7 +708,7 @@ const highlights = [
     wikiArticle: 'Sint-Nicolaaskapel_(Nijmegen)', wikiLang: 'nl',
     imageCaption: 'De Sint Nicolaaskapel in het Valkhofpark, deels uit 1030.',
     text: `<p>Deze kapel is deels gebouwd in 1030, waarmee ze één van de oudste nog bestaande gebouwen van Nederland is — en de oudste kapel die nog steeds in gebruik is. Ze is een zeldzaam voorbeeld van Byzantijnse architectuur in Noordwest-Europa: in tegenstelling tot de gebruikelijke kruisvorm zijn Byzantijnse kerken vierkant, rond of veelhoekig. Deze kapel is <em>tienhoekig</em>.</p>
-<p>Ze is gebouwd met stenen van Römse en vroegmiddeleeuwse bouwwerken die hier eerder stonden. De poort alleen al bestaat uit 19 verschillende steensoorten — een middeleeuwse recyclage op zijn best.</p>`,
+<p>Ze is gebouwd met stenen van Roomse en vroegmiddeleeuwse bouwwerken die hier eerder stonden. De poort alleen al bestaat uit 19 verschillende steensoorten — een middeleeuwse recyclage op zijn best.</p>`,
     funFact: 'De kapel bleef gespaard toen de burcht in 1796 werd gesloopt, enkel omdat ze van een ander soort steen was gebouwd — tufsteen kon worden vermalen tot cement, de kapelstenen niet.'
   },
   {
@@ -658,18 +719,18 @@ const highlights = [
     wikiArticle: 'Barbarossaruïne', wikiLang: 'nl',
     imageCaption: 'De Barbarossaruïne, restant van de burchtkapel uit 1155.',
     text: `<p>Deze ruïne is wat er over is van de kapel die in 1155 door keizer Frederik Barbarossa werd gebouwd als onderdeel van zijn burcht. In de binnenmuur zijn bogen zichtbaar waarop een tussenvloer rustte — de scheiding tussen de lage benedenkerk en de hoge bovenkerk.</p>
-<p>Bijzonder: de zuilen die je ziet zijn échte Römse zuilen, hergebruikt uit de oudheid. Ze stonden hier al eeuwen voor Barbarossa de kapel liet bouwen.</p>`,
+<p>Bijzonder: de zuilen die je ziet zijn échte Roomse zuilen, hergebruikt uit de oudheid. Ze stonden hier al eeuwen voor Barbarossa de kapel liet bouwen.</p>`,
     funFact: null
   },
   {
     id: 17,
-    title: 'Römse Muur (Vleeshouwerstraat)',
+    title: 'Roomse Muur (Vleeshouwerstraat)',
     cat: 'monument',
     lat: 51.8444, lng: 5.8673,
     image: null,
-    text: `<p>In de tunnel achter Holland Casino bevindt zich een bijzondere vondst: een stuk Römse muur, opgegraven tijdens de bouw van de parkeergarage in 1985–1987. De muur dateert uit de derde eeuw en was het grootste laat-Römse bouwwerk dat ooit in Nederland was gevonden: 80 meter lang, 4 meter hoog en anderhalve meter dik.</p>
+    text: `<p>In de tunnel achter Holland Casino bevindt zich een bijzondere vondst: een stuk Roomse muur, opgegraven tijdens de bouw van de parkeergarage in 1985–1987. De muur dateert uit de derde eeuw en was het grootste laat-Roomse bouwwerk dat ooit in Nederland was gevonden: 80 meter lang, 4 meter hoog en anderhalve meter dik.</p>
 <p>Hoogstwaarschijnlijk was de muur onderdeel van een vloerverwarmingssysteem (<em>hypocaustum</em>), wat de rijkdom van de bewoners benadrukt. Helaas moest het grootste deel wijken voor het casino. Slechts dit stukje achter glas mocht blijven.</p>`,
-    funFact: 'De muffe geur in de tunnel is eigenlijk één van de beste plekken in Nijmegen om echt in aanraking te komen met de Römse geschiedenis van de stad.'
+    funFact: 'De muffe geur in de tunnel is eigenlijk één van de beste plekken in Nijmegen om echt in aanraking te komen met de Roomse geschiedenis van de stad.'
   },
   {
     id: 18,
@@ -678,7 +739,7 @@ const highlights = [
     lat: 51.8480, lng: 5.8645,
     wikiArticle: 'Waalbrug_(Nijmegen)', wikiLang: 'nl',
     imageCaption: 'De Waalbrug — gebouwd in 1936, destijds de langste boogspanning van Europa.',
-    text: `<p>De Waal maakte Nijmegen groot. De Römse geschiedschrijver Tacitus was er zo van onder de indruk dat hij schreef dat het de breedste rivier was die hij ooit had gezien.</p>
+    text: `<p>De Waal maakte Nijmegen groot. De Roomse geschiedschrijver Tacitus was er zo van onder de indruk dat hij schreef dat het de breedste rivier was die hij ooit had gezien.</p>
 <p><strong>Spoorbrug (1879):</strong> De oudste van de drie bruggen.</p>
 <p><strong>Waalbrug (1936):</strong> Destijds de langste boogspanning van Europa. Op 10 mei 1940 bliezen de Nederlanders hem op om een Duitse opmars te stoppen. Wonderbaarlijk genoeg overleefde de brug zowel het bombardement van 1944 als Operatie Market Garden.</p>
 <p><strong>De Oversteek (2013):</strong> Vernoemd naar de Waaloversteek van 20 september 1944, waarbij 48 geallieerde soldaten omkwamen. De brug heeft 48 paar lantaarns die elke avond één voor één aangaan. Elke avond loopt een veteraan de brug over in het tempo van de lichten — de Sunset March, al meer dan 1500 keer uitgevoerd.</p>`,
@@ -751,7 +812,7 @@ const highlights = [
     cat: 'geschiedenis',
     lat: 51.8451, lng: 5.8600,
     image: null,
-    text: `<p>De Lange Hezelstraat geldt als de <em>oudste winkelstraat van Nederland</em>. Al in de Römse tijd was het een belangrijke doorgaande weg. In de dertiende eeuw stonden hier al stenen huizen — een zeldzaamheid in die tijd.</p>
+    text: `<p>De Lange Hezelstraat geldt als de <em>oudste winkelstraat van Nederland</em>. Al in de Roomse tijd was het een belangrijke doorgaande weg. In de dertiende eeuw stonden hier al stenen huizen — een zeldzaamheid in die tijd.</p>
 <p>De meeste gevels dateren nu uit rond 1900, maar schijn bedriegt. Vanuit panden als de Yoghurt Barn zijn middeleeuwse gangen en kelders nog steeds te bezoeken. Onder de moderne winkelpuien schuilt een verrassend oud hart.</p>`,
     funFact: 'Alle gassen (smalle steegjes met het achtervoegsel "-gas") van heel Nederland liggen in Nijmegen. Er zijn er 18, met namen als Hanengas, Mussengas en Papengas — nergens anders in Nederland kom je ze tegen.'
   },
@@ -800,7 +861,7 @@ const highlights = [
 
   // ── NATUURWANDELINGEN ─────────────────────────────────────────────────────
   {
-    id: 30,
+    id: 100,
     title: 'Natuurwandeling 1 — Heumensoord',
     cat: 'park',
     lat: 51.8079, lng: 5.8536,
@@ -808,12 +869,12 @@ const highlights = [
     imageCaption: 'Heumensoord — bos en heide ten zuiden van Nijmegen.',
     text: `<p><strong>Start:</strong> Rij of fiets de Driehuizerweg af richting het zuiden, tot je het bos in rijdt — daar staan gele wandelroutebordjes met pijlen voor 5 km en 10 km.</p>
 <p>Heumensoord is een uitstekende ontsnapping als je even weg wilt van de stad: eindeloos veel paden, hei en bos. Er zijn twee uitgestippelde routes: een van <strong>5 km</strong> en een van <strong>10 km</strong>. Beide leiden over de heide en door de bossen. Je kunt ook lekker verdwalen op de ongemarkeerde paden.</p>
-<p>Historisch gezien is het hier ook interessant. De 10 km-route voert langs velden waar elke juli het tentenkamp van de Vierdaagse wordt opgebouwd. Verder loop je langs een <strong>Römse wachtpost</strong> — onderdeel van het Limes-verdedigingssysteem. De houten toren die je nu ziet is een reconstructie uit 1999, maar de plek stamt uit de vierde eeuw.</p>
+<p>Historisch gezien is het hier ook interessant. De 10 km-route voert langs velden waar elke juli het tentenkamp van de Vierdaagse wordt opgebouwd. Verder loop je langs een <strong>Roomse wachtpost</strong> — onderdeel van het Limes-verdedigingssysteem. De houten toren die je nu ziet is een reconstructie uit 1999, maar de plek stamt uit de vierde eeuw.</p>
 <p>Naast het zweefvliegveld bij Malden (langs de 10 km-route) vind je <em>Boscafé</em>, een mooie plek voor koffie halverwege.</p>`,
     funFact: 'Heumensoord is elk jaar in juli het kampeerterrein van duizenden militairen die meelopen aan de Vierdaagse.'
   },
   {
-    id: 31,
+    id: 101,
     title: 'Natuurwandeling 2 — Ooijpolder (Boerenlandpad)',
     cat: 'park',
     lat: 51.8302, lng: 5.9458,
@@ -826,7 +887,7 @@ const highlights = [
     funFact: 'De Hertog van Alva — berucht in de rest van Nederland — was zo onder de indruk van de Ooijpolder dat hij er bijna een heel jaar in Nijmegen bleef.'
   },
   {
-    id: 32,
+    id: 102,
     title: 'Natuurwandeling 3 — De N70',
     cat: 'park',
     lat: 51.8139, lng: 5.7962,
@@ -838,8 +899,8 @@ const highlights = [
 <p>🌳 <strong>De kabouterboom</strong> — de breedste boom van Nederland, al zes eeuwen oud. Helaas aangetast door vuur, maar nog staand.</p>
 <p>🏛️ <strong>Gratis Landschapsmuseum</strong> — over de geschiedenis van de Nederlandse landbewerking, plus een miniatuurtuin met 12 landschapssoorten ("Madurodam van de landschappen").</p>
 <p>⛰️ <strong>Duivelsberg</strong> — de naam klinkt spannend maar komt van "Duffeltberg". Loop van bovenaf de berg af naar het uitzichtpunt voor een schitterend panorama.</p>
-<p>🏭 <strong>Leemkuilen van de Holdeurn</strong> — klimmers van 30%! Hier was ooit een Römse dakpannenfabriek. De fabriek brandde in de jaren '30 af en werd nooit herbouwd.</p>`,
-    funFact: 'Op de "Elyzeese velden" langs de route zijn urnen uit de steentijd en Römse graven gevonden. De naam betekent letterlijk "velden der gelukzaligen".'
+<p>🏭 <strong>Leemkuilen van de Holdeurn</strong> — klimmers van 30%! Hier was ooit een Roomse dakpannenfabriek. De fabriek brandde in de jaren '30 af en werd nooit herbouwd.</p>`,
+    funFact: 'Op de "Elyzeese velden" langs de route zijn urnen uit de steentijd en Roomse graven gevonden. De naam betekent letterlijk "velden der gelukzaligen".'
   },
 
   // ── TIPS VAN SAB ──────────────────────────────────────────────────────────
@@ -1028,9 +1089,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   maxZoom: 19,
 }).addTo(map);
 
-// Route polyline
-const tourIds = new Set([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]);
-L.polyline(highlights.filter(h => tourIds.has(h.id)).map(h => [h.lat, h.lng]), {
+// Route polyline — ordered by walking direction
+const tourRoute = [28,29,26,27,25,24,23,22,21,1,4,5,2,3,6,7,8,9,20,10,11,12,14,15,16,18,13,17,19];
+const tourIds = new Set(tourRoute);
+const hMap = Object.fromEntries(highlights.map(h => [h.id, h]));
+L.polyline(tourRoute.map(id => { const h = hMap[id]; return [h.lat, h.lng]; }), {
   color: '#8b5e2a',
   weight: 3,
   opacity: 0.65,
@@ -1153,13 +1216,22 @@ document.getElementById('panelClose').addEventListener('click', closeDetail);
 const WELCOME_HTML = `
   <h2>Op Historische Reis<br>door Nijmegen</h2>
   <div class="quote">"Weet ge mij een plaats te noemen,<br>die op zoo veel schoons kan roemen?"</div>
-  <p>Welkom in Nijmegen — de <strong>oudste stad van Nederland</strong>, met een rijke geschiedenis van meer dan 2000 jaar. Van Römse soldaten tot middeleeuwse keizers, van de Vrede van Nijmegen tot de bevrijding in 1944.</p>
+  <p>Welkom in Nijmegen — de <strong>oudste stad van Nederland</strong>, met een rijke geschiedenis van meer dan 2000 jaar. Van Roomse soldaten tot middeleeuwse keizers, van de Vrede van Nijmegen tot de bevrijding in 1944.</p>
   <p>Tik op een pin op de kaart om meer te lezen. Volg de genummerde route voor een wandeling van zo'n <strong>2,5 km</strong> door de historische binnenstad. Buiten de stad vind je ook drie gemarkeerde startpunten voor natuurwandelingen.</p>
-  <p>Naast de historische wandeling zijn ook de horecatips van Sabine toegevoegd aan de kaart. Zoek de roze pinnen op voor haar persoonlijke aanbevelingen voor ontbijt, lunch, café en diner.</p>
+  <p>Naast de historische wandeling zijn ook de horecatips van Sabine toegevoegd aan de kaart. Zoek de roze pins op voor haar persoonlijke aanbevelingen voor ontbijt, lunch, café en diner.</p>
   <div class="stats">
-    <div class="stat"><div class="stat-num">32</div><div class="stat-label">Route stops</div></div>
+    <div class="stat"><div class="stat-num">29</div><div class="stat-label">Route stops</div></div>
     <div class="stat"><div class="stat-num">18</div><div class="stat-label">Tips van Sab</div></div>
     <div class="stat"><div class="stat-num">2000</div><div class="stat-label">Jaar geschiedenis</div></div>
+  </div>
+  <div class="hist-section">
+    <p>De cultuurgeschiedenis van Nijmegen gaat zo'n 2000 jaar terug, toen de Roomsen hier voor het eerst neerstreken en Nijmegen de grootste stad werd van het toenmalige Nederland. Enkele eeuwen later heeft keizer Karel de Grote op het Valkhof een paleis gebouwd. Nijmegen werd toen een van de belangrijkste plaatsen van zijn rijk.</p>
+    <p>Nijmegen was de eeuwen daarna een strategisch gelegen stad en daarom vaak het middelpunt van strijd. De laatste keer in de Tweede Wereldoorlog, toen de geallieerden per ongeluk de stad bombardeerden, met honderden doden en een verwoeste stad tot gevolg. Toch is de stad er geslaagd weer op te bouwen tot een gezellige en bruisende stad.</p>
+  </div>
+  <div class="hist-section">
+    <h3>"Historische sensatie"</h3>
+    <p>De stadswandeling heeft als doel zo veel mogelijk historische sensaties te ervaren. 'Historische sensatie' is een term die werd gemunt door Johan Huizinga, Neerlands bekendste cultuurhistoricus die internationale faam vergaarde met zijn boek <em>Herfsttij der Middeleeuwen</em>. Hij doelde met dit begrip op de gewaarwording van de historicus die in direct contact staat met de verleden werkelijkheid. De historicus wordt dan opgezogen in de tijd. Verleden, heden en toekomst smelten samen. Je ademt het in!</p>
+    <p>Dit sublieme gevoel kan bijvoorbeeld ontstaan bij een ontmoeting met een gebouw, een archiefstuk, of juist met iets kleins en gedetailleerds. Iedere historische sensatie is uniek, maar generaliserend valt te stellen dat een historische sensatie intenser is met voorkennis over de verleden werkelijkheid.</p>
   </div>
   <div class="legend-full">
     <h3>Categorieën</h3>
@@ -1176,6 +1248,14 @@ document.getElementById('drawerContent').innerHTML = WELCOME_HTML;
 document.getElementById('headerLegend').innerHTML = Object.entries(CATS).map(([, v]) => `
   <div class="legend-item">
     <div class="legend-dot" style="background:${v.color}"></div>
+    <span>${v.emoji} ${v.label}</span>
+  </div>
+`).join('');
+
+// ─── MOBILE LEGEND ───────────────────────────────────────────────────────────
+document.getElementById('mobileLegend').innerHTML = Object.entries(CATS).map(([, v]) => `
+  <div class="ml-item">
+    <div class="ml-dot" style="background:${v.markerColor || v.color}"></div>
     <span>${v.emoji} ${v.label}</span>
   </div>
 `).join('');
