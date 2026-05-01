@@ -367,7 +367,7 @@
 <header>
   <div>
     <h1>Op Historische Reis door Nijmegen</h1>
-    <div class="subtitle">Stadswandeling — 29 highlights — ±2,5 km</div>
+    <div class="subtitle">Stadswandeling — 29 stops + tips van Sab — ±2,5 km</div>
   </div>
   <div class="legend" id="headerLegend"></div>
 </header>
@@ -381,7 +381,11 @@
       <button class="panel-close" id="panelClose" title="Sluiten">✕</button>
       <div class="panel-header">
         <div class="panel-number" id="detailNumber"></div>
-        <div class="panel-cat-badge" id="detailBadge"></div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px">
+          <div class="panel-cat-badge" id="detailBadge" style="margin-bottom:0"></div>
+          <div class="panel-cat-badge" id="detailSubcat" style="display:none;margin-bottom:0"></div>
+          <div class="panel-cat-badge" id="detailPrice" style="display:none;margin-bottom:0;background:#555"></div>
+        </div>
         <div class="panel-title" id="detailTitle"></div>
       </div>
       <div class="panel-body">
@@ -406,6 +410,14 @@ const CATS = {
   herdenking:  { label: 'Herdenking',          color: '#7f8c8d', emoji: '🕊️' },
   park:        { label: 'Park & Natuur',       color: '#27ae60', emoji: '🌿' },
   geschiedenis:{ label: 'Geschiedenis',        color: '#2980b9', emoji: '📖' },
+  tips:        { label: 'Tips van Sab',        color: '#c2185b', emoji: '⭐' },
+};
+
+const SUBCATS = {
+  ontbijt: { label: '🍳 Ontbijt',  bg: '#fff3e0', fg: '#e65100' },
+  lunch:   { label: '🥗 Lunch',    bg: '#e8f5e9', fg: '#2e7d32' },
+  cafe:    { label: '☕ Café',      bg: '#efebe9', fg: '#4e342e' },
+  diner:   { label: '🍽️ Diner',   bg: '#f3e5f5', fg: '#6a1b9a' },
 };
 
 // Helper: Wikimedia Commons direct image URL via Special:FilePath
@@ -727,6 +739,182 @@ const highlights = [
 <p>Op 23 februari greep de gemeente in. Met 200 ME-busjes, vijf tanks, een helikopter, een pantserwagen, traangas en 2000 man werden de krakers verwijderd. Een week van protesten volgde tegen het harde optreden. Nijmegen had lang witte graffiti van gewapende ME'ers op de muren — één is er nog, uiteraard in de Piersonstraat zelf.</p>`,
     funFact: 'Radio Rataplan werd speciaal opgericht om mensen te informeren over de acties — er was immers nog geen internet.'
   },
+
+  // ── TIPS VAN SAB ──────────────────────────────────────────────────────────
+  {
+    id: 30,
+    title: 'Gesha',
+    cat: 'tips', subcat: 'ontbijt',
+    lat: 51.8450, lng: 5.8584,
+    image: null,
+    text: `<p><strong>Aanbevolen voor ontbijt én koffie.</strong> Dit is Sab's absolute favoriet voor ontbijt in Nijmegen — en heeft nog niemand teleurgesteld. Ze hebben een heerlijke ontbijtplank en uitstekende koffie. Wel iets verder van het centrum, maar het is de omweg meer dan waard.</p>
+<p>Ook gewoon een fijne plek om op een willekeurig moment een goede koffie te drinken.</p>`,
+    funFact: null
+  },
+  {
+    id: 31,
+    title: 'Fresca',
+    cat: 'tips', subcat: 'ontbijt',
+    lat: 51.8438, lng: 5.8628,
+    image: null,
+    text: `<p><strong>Aanbevolen voor ontbijt én koffie.</strong> Fresca ligt in de buurt van het centrum en je kunt er lekker in de zon zitten. Een fijne plek voor zowel ontbijt als een koffietje op elk moment van de dag.</p>
+<p>Tip: in het weekend zijn er relatief veel baby's — houd daar rekening mee als je het rustig wilt hebben.</p>`,
+    funFact: null
+  },
+  {
+    id: 32,
+    title: "Billy's",
+    cat: 'tips', subcat: 'ontbijt',
+    lat: 51.8440, lng: 5.8624,
+    image: null,
+    text: `<p><strong>Aanbevolen voor ontbijt én koffie.</strong> Een fijne plek dicht bij Fresca waar je ook lekker in de zon kunt zitten. Goed voor zowel ontbijt als een kopje koffie op elk moment van de dag.</p>`,
+    funFact: null
+  },
+  {
+    id: 33,
+    title: 'Puck',
+    cat: 'tips', subcat: 'cafe',
+    lat: 51.8435, lng: 5.8618,
+    image: null,
+    text: `<p><strong>Aanbevolen voor koffie.</strong> Puck heeft heerlijke koffie, al is het ontbijt minder bijzonder. Meer een plek voor een goed bakje koffie dan een uitgebreide ochtendmaaltijd.</p>`,
+    funFact: null
+  },
+  {
+    id: 34,
+    title: 'Café de Zon',
+    cat: 'tips', subcat: 'lunch',
+    lat: 51.8555, lng: 5.8462,
+    image: null,
+    text: `<p><strong>Aanbevolen voor lunch.</strong> Een leuke plek op het eiland in de Waal — de kaart is niet heel spannend, maar de locatie maakt het goed. Je kunt er ook een ijsje halen.</p>
+<p>Tip van Sab: maak er een groter uitje van en loop een rondje langs de bruggen — een leuke wandeling als je de binnenstad even uit wilt.</p>`,
+    funFact: null
+  },
+  {
+    id: 35,
+    title: 'Blush',
+    cat: 'tips', subcat: 'lunch',
+    lat: 51.8440, lng: 5.8636,
+    image: null,
+    text: `<p><strong>Aanbevolen voor lunch.</strong> Blush heeft een leuke binnentuin — een fijne plek om rustig te lunchen, ook als het buiten wat wisselvallig is.</p>`,
+    funFact: null
+  },
+  {
+    id: 36,
+    title: 'Oersoep / Honigcomplex',
+    cat: 'tips', subcat: 'lunch',
+    lat: 51.8522, lng: 5.8495,
+    image: null,
+    text: `<p><strong>Aanbevolen voor lunch en sfeer.</strong> Oersoep is de brouwerij van Nijmegen die je vindt bij het <strong>Honigcomplex</strong> — een oude Honig-fabriekslocatie die wordt omgevormd tot een levendige broedplaats voor creatieve ondernemers, horeca en cultuur.</p>
+<p>Een leuke bestemming als je iets meer wilt ontdekken buiten de klassieke binnenstad.</p>`,
+    funFact: null
+  },
+  {
+    id: 37,
+    title: 'NYMA',
+    cat: 'tips', subcat: 'lunch',
+    lat: 51.8535, lng: 5.8448,
+    image: null,
+    text: `<p><strong>Aanbevolen voor lunch en drankje.</strong> NYMA ligt iets verder dan het Honigcomplex en biedt veel horeca in een bijzondere setting. Blikvangers is de bar in de NYMA-toren: het gevoel van in een watertoren zitten — maar dan wat minder chique.</p>
+<p>De hele omgeving is de moeite waard als je op zoek bent naar iets buiten het centrum.</p>`,
+    funFact: null
+  },
+  {
+    id: 38,
+    title: 'Samson',
+    cat: 'tips', subcat: 'cafe',
+    lat: 51.8435, lng: 5.8648,
+    image: null,
+    text: `<p><strong>Aanbevolen als café.</strong> Samson is hét café van Nijmegen: jong, oud, kak én volksbuurt — iedereen komt hier. Ze hebben een uitgebreid biermenu waarmee je allerlei biertjes kunt proeven en vergelijken.</p>
+<p>⚠️ <em>Waarschuwing van Sab: daarna lig je er echt af.</em></p>`,
+    funFact: null
+  },
+  {
+    id: 39,
+    title: 'Café Maxim (Bottendaal)',
+    cat: 'tips', subcat: 'cafe',
+    lat: 51.8408, lng: 5.8576,
+    image: null,
+    text: `<p><strong>Aanbevolen als café en buurtje.</strong> Café Maxim ligt iets buiten het centrum in de wijk Bottendaal — een leuke wijk om doorheen te wandelen. Goed voor een rustig drankje wat verder van de toeristische drukte.</p>`,
+    funFact: null
+  },
+  {
+    id: 40,
+    title: 'Lebowski',
+    cat: 'tips', subcat: 'cafe',
+    lat: 51.8432, lng: 5.8605,
+    image: null,
+    text: `<p><strong>Aanbevolen voor wijn.</strong> Bij Lebowski hebben ze lekkere wijn. Een fijne plek voor een avondlijk glas.</p>`,
+    funFact: null
+  },
+  {
+    id: 41,
+    title: 'Merano',
+    cat: 'tips', subcat: 'diner',
+    lat: 51.8444, lng: 5.8641,
+    image: null,
+    price: '€€',
+    text: `<p><strong>Aanbevolen voor diner.</strong> Merano is een heerlijke Italiaan — een van Sab's favorieten voor een etentje in Nijmegen. Goed eten in een fijne sfeer.</p>`,
+    funFact: null
+  },
+  {
+    id: 42,
+    title: 'Cali',
+    cat: 'tips', subcat: 'diner',
+    lat: 51.8431, lng: 5.8652,
+    image: null,
+    price: '€',
+    text: `<p><strong>Aanbevolen voor diner.</strong> Cali is wat meer low key, maar zeker lekker. Ze hebben maaltijdplanken — perfect om te delen. Goed voor een ontspannen avond zonder te veel poespas, en betaalbaar.</p>`,
+    funFact: null
+  },
+  {
+    id: 43,
+    title: 'Ultimo',
+    cat: 'tips', subcat: 'diner',
+    lat: 51.8436, lng: 5.8657,
+    image: null,
+    price: '€€',
+    text: `<p><strong>Aanbevolen voor diner.</strong> Ultimo is een leuk restaurant met goede wijn. Inmiddels ook zeker zo goed als Berlin of Café Klein. Een fijne optie voor een avondje uit.</p>`,
+    funFact: null
+  },
+  {
+    id: 44,
+    title: 'Lume',
+    cat: 'tips', subcat: 'diner',
+    lat: 51.8448, lng: 5.8634,
+    image: null,
+    price: '€',
+    text: `<p><strong>Aanbevolen voor diner.</strong> Lume serveert heerlijke paella — een aanrader als je zin hebt in een goede Spaanse maaltijd. Betaalbaar en lekker.</p>`,
+    funFact: null
+  },
+  {
+    id: 45,
+    title: 'Nibbles',
+    cat: 'tips', subcat: 'diner',
+    lat: 51.8442, lng: 5.8640,
+    image: null,
+    price: '€',
+    text: `<p><strong>Aanbevolen voor diner.</strong> Nibbles is shared dining — je bestelt kleine gerechtjes die je aan tafel deelt. Low key, lekker eten en redelijk betaalbaar. Een gezellige manier om te dineren.</p>`,
+    funFact: null
+  },
+  {
+    id: 46,
+    title: 'Berlin',
+    cat: 'tips', subcat: 'diner',
+    lat: 51.8443, lng: 5.8655,
+    image: null,
+    text: `<p><strong>Aanbevolen voor diner.</strong> Berlin is geweldig — in dezelfde sfeervolle categorie als Café Klein, maar doet er wat Sab betreft inmiddels niet meer voor onder. Een fijne keuze voor een avond uit.</p>`,
+    funFact: null
+  },
+  {
+    id: 47,
+    title: 'Café Klein',
+    cat: 'tips', subcat: 'diner',
+    lat: 51.8445, lng: 5.8620,
+    image: null,
+    text: `<p><strong>Aanbevolen voor diner — met kanttekening.</strong> Café Klein heeft goede gerechtjes, maar het ligt er sterk aan waar je zit. Voorin is het gezellig en fijn. Achterin voelt het soms meer als een rave dan een restaurant, en de bediening kan wisselvallig zijn.</p>
+<p>Kortom: reserveer een tafel voorin.</p>`,
+    funFact: null
+  },
 ];
 
 // ─── MAP ─────────────────────────────────────────────────────────────────────
@@ -778,6 +966,24 @@ function openDetail(h) {
   const badge = document.getElementById('detailBadge');
   badge.textContent = `${CATS[h.cat].emoji} ${CATS[h.cat].label}`;
   badge.style.background = CATS[h.cat].color;
+
+  const subcat = document.getElementById('detailSubcat');
+  const priceEl = document.getElementById('detailPrice');
+  if (h.subcat && SUBCATS[h.subcat]) {
+    const sc = SUBCATS[h.subcat];
+    subcat.textContent = sc.label;
+    subcat.style.background = sc.bg;
+    subcat.style.color = sc.fg;
+    subcat.style.display = 'inline-block';
+  } else {
+    subcat.style.display = 'none';
+  }
+  if (h.price) {
+    priceEl.textContent = h.price;
+    priceEl.style.display = 'inline-block';
+  } else {
+    priceEl.style.display = 'none';
+  }
 
   document.getElementById('detailTitle').textContent = h.title;
 
@@ -838,8 +1044,8 @@ welcome.innerHTML = `
   <p>Welkom in Nijmegen — de <strong>oudste stad van Nederland</strong>, met een rijke geschiedenis van meer dan 2000 jaar. Van Römse soldaten tot middeleeuwse keizers, van de Vrede van Nijmegen tot de bevrijding in 1944.</p>
   <p>Tik op een pin op de kaart om meer te lezen. Volg de genummerde route voor een wandeling van zo'n <strong>2,5 km</strong>.</p>
   <div class="stats">
-    <div class="stat"><div class="stat-num">29</div><div class="stat-label">Highlights</div></div>
-    <div class="stat"><div class="stat-num">2,5</div><div class="stat-label">Kilometer</div></div>
+    <div class="stat"><div class="stat-num">29</div><div class="stat-label">Route stops</div></div>
+    <div class="stat"><div class="stat-num">18</div><div class="stat-label">Tips van Sab</div></div>
     <div class="stat"><div class="stat-num">2000</div><div class="stat-label">Jaar geschiedenis</div></div>
   </div>
   <div class="legend-full">
